@@ -1,10 +1,16 @@
 export type Language = 'kannada' | 'english';
 
-export type Screen = 'landing' | 'welcome' | 'story' | 'monuments' | 'chatbot' | 'quiz';
+export type Screen = 'landing' | 'rajyotsava' | 'welcome' | 'story' | 'monuments' | 'chatbot' | 'quiz';
 
 export interface Translatable {
   kannada: string;
   english: string;
+}
+
+export interface StoryIntro {
+  title: Translatable;
+  description: Translatable;
+  prompt: Translatable;
 }
 
 export interface StoryChapter {
@@ -23,4 +29,9 @@ export interface QuizQuestion {
     question: Translatable;
     options: Translatable[];
     correctAnswerIndex: number;
+}
+
+export interface Message {
+  role: 'user' | 'model';
+  text: string;
 }

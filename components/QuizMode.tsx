@@ -97,7 +97,7 @@ const QuizMode: React.FC<QuizModeProps> = ({ language }) => {
           const isCorrect = index === currentQuestion.correctAnswerIndex;
           const isSelected = selectedAnswer === index;
           
-          let buttonClass = 'bg-[#C9B58B]/50 hover:bg-[#C9B58B] border-[#C9B58B]';
+          let buttonClass = 'bg-[#C9B58B]/60 hover:bg-[#C9B58B] border-[#D4AF37]/60 text-[#382d22]';
           if (isSelected) {
             buttonClass = isCorrect ? 'bg-green-700 text-white border-green-700' : 'bg-red-700 text-white border-red-700';
           } else if (selectedAnswer !== null && isCorrect) {

@@ -1,4 +1,5 @@
 {
   "name": "Talikota Samvāda",
-  "description": "A bilingual historical guide to the Vijayanagara Empire, the beauty of Hampi, and the journey of the Battle of Talikota, featuring storytelling, monument exploration, an AI chatbot, and a quiz."
+  "description": "A bilingual historical guide to the Vijayanagara Empire, the beauty of Hampi, and the journey of the Battle of Talikota, featuring storytelling, monument exploration, an AI chatbot, and a quiz.",
+  "requestFramePermissions": []
 }

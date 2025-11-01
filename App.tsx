@@ -8,6 +8,7 @@ import ChatbotMode from './components/ChatbotMode';
 import QuizMode from './components/QuizMode';
 import LanguageToggleButton from './components/LanguageToggleButton';
 import Button from './components/common/Button';
+import RajyotsavaPopup from './components/RajyotsavaPopup';
 
 const App: React.FC = () => {
   const [screen, setScreen] = useState<Screen>('landing');
@@ -21,6 +22,8 @@ const App: React.FC = () => {
     switch (screen) {
       case 'landing':
         return <LandingScreen setScreen={setScreen} />;
+      case 'rajyotsava':
+        return <RajyotsavaPopup setScreen={setScreen} />;
       case 'welcome':
         return <WelcomeScreen setScreen={setScreen} />;
       case 'story':
@@ -36,10 +39,10 @@ const App: React.FC = () => {
     }
   };
   
-  const showHeaderControls = screen !== 'landing' && screen !== 'welcome';
+  const showHeaderControls = screen !== 'landing' && screen !== 'welcome' && screen !== 'rajyotsava';
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-fixed p-4 flex flex-col items-center justify-center" style={{ backgroundImage: "url('/background.webp')" }}>
+    <div className="min-h-screen p-4 flex flex-col items-center justify-center">
       {showHeaderControls && (
         <>
           <div className="absolute top-6 right-6 z-10">
@@ -53,7 +56,7 @@ const App: React.FC = () => {
         </>
       )}
 
-      <main className="w-full max-w-4xl">
+      <main className={`w-full transition-all duration-500 ease-in-out ${screen === 'chatbot' ? 'max-w-6xl' : 'max-w-4xl'}`}>
         {renderScreen()}
       </main>
     </div>

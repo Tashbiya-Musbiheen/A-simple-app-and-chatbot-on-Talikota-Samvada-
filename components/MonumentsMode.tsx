@@ -25,6 +25,7 @@ const MonumentsMode: React.FC<MonumentsModeProps> = ({ language }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showGreeting, setShowGreeting] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const prevLanguage = usePrevious(language);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const MonumentsMode: React.FC<MonumentsModeProps> = ({ language }) => {
     setIsGenerating(false);
     setError(null);
     setShowGreeting(false);
+    setShowAll(false);
   };
 
   const handleGenerateImage = async () => {
@@ -117,13 +119,15 @@ const MonumentsMode: React.FC<MonumentsModeProps> = ({ language }) => {
     );
   }
 
+  const monumentsToShow = showAll ? monuments : monuments.slice(0, 4);
+
   return (
     <div className="p-6 md:p-8 rounded-lg bg-[#FFF9E6]/70 shadow-xl backdrop-blur-md animate-fade-in border-2 border-[#D4AF37]/60">
       <h2 className={`font-serif-heading text-4xl font-bold text-center mb-8 text-[#6D001A] ${language === 'kannada' ? 'font-kannada' : ''}`}>
         {language === 'kannada' ? 'ಹಂಪಿಯ ಸ್ಮಾರಕಗಳು' : 'Hampi Monuments'}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {monuments.map((monument, index) => (
+        {monumentsToShow.map((monument, index) => (
           <button
             key={index}
             onClick={() => handleSelectMonument(monument)}
@@ -138,6 +142,13 @@ const MonumentsMode: React.FC<MonumentsModeProps> = ({ language }) => {
             </p>
           </button>
         ))}
+        {!showAll && monuments.length > 4 && (
+            <div className="md:col-span-2 mt-4">
+                <Button onClick={() => setShowAll(true)}>
+                    {language === 'kannada' ? 'ಇನ್ನಷ್ಟು ಸ್ಮಾರಕಗಳನ್ನು ವೀಕ್ಷಿಸಿ' : 'View More Monuments'}
+                </Button>
+            </div>
+        )}
       </div>
     </div>
   );
